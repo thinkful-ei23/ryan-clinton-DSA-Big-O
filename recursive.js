@@ -1,32 +1,34 @@
+'use strict';
+
 /*=================================================================================
 Exercise 1 - Counting Sheep
 Write a recursive function that counts how many sheep jumps over the fence. Your program should take a number as an input. That number should be the number of sheep you have. The function should display the number along with the message "Another sheep jump over the fence" until no more sheep are left.
 Input: 3
 Output:
-	3 - Another sheep jump over the fence
-	2 - Another sheep jump over the fence
-	1 - Another sheep jump over the fence
+3 - Another sheep jump over the fence
+2 - Another sheep jump over the fence
+1 - Another sheep jump over the fence
 */
 
 /*
- * @function countSheep
- * @desc     Recursive program that counts how many sheep jumps over the fence. 
- * @param    {number} num - the number sheep 
- * @returns  
- * @display  displays how many sheep jumped over the fence
- */
+* @function countSheep
+* @desc     Recursive program that counts how many sheep jumps over the fence. 
+* @param    {number} num - the number sheep 
+* @returns  
+* @display  displays how many sheep jumped over the fence
+*/
 
 function countSheep(num){
-    //stopping condition of base case
-    if(num === 0){
-        console.log(`All sheep jumped over the fence`);
-    } 
-    //this is the recursive case
-    //this will be executed until it reaches base case
-    else{
-        console.log(`${num}: Another sheep jump over the fence`);
-        countSheep(num-1);
-    }
+  //stopping condition of base case
+  if(num === 0){
+    console.log('All sheep jumped over the fence');
+  } 
+  //this is the recursive case
+  //this will be executed until it reaches base case
+  else{
+    console.log(`${num}: Another sheep jump over the fence`);
+    countSheep(num-1);
+  }
 }
 
 //complexity: linear, o(n). one layer
@@ -40,10 +42,10 @@ Input: [1, 2, 3]
 Output: [2, 4, 6]
 */
 function double_all(arr) {
-    if (!arr.length) {
-        return [];
-    }
-    return [arr[0] * 2, ...double_all(arr.slice(1))];
+  if (!arr.length) {
+    return [];
+  }
+  return [arr[0] * 2, ...double_all(arr.slice(1))];
 }
 
 //linear, one layer
@@ -57,10 +59,10 @@ Output: adihuat
 */
 
 function reverseString(str) {
-    if (str.length < 2) {
-        return str;
-    }
-    return reverseString(str.slice(1)) + str[0];
+  if (str.length < 2) {
+    return str;
+  }
+  return reverseString(str.slice(1)) + str[0];
 }
 
 
@@ -73,10 +75,10 @@ A triangular number counts the objects that can form an equilateral triangle.
 The nth triangular number is the number of dots composing a triangle with n dots on a side, 
 and is equal to the sum of the n natural numbers from 1 to n. 
 This is the Triangular Number Sequence: 1, 3, 6, 10, 15, 21, 28, 36, 45
-                          *
-            *           *    *
+*
+*           *    *
 *     |   *   *  |   *    *    *  |
- 1st     2nd             3rd             nth?  
+1st     2nd             3rd             nth?  
 1st trianular number = 1
 2nd = (1+2) = 3
 3rd = (1+2+3) = 6 
@@ -86,9 +88,9 @@ Output: 15
 */
 //Should always return n*(n+1)/2
 function triangle(n) {
-    if (n < 2) 
-        return n;
-    return n + triangle(n - 1);
+  if (n < 2) 
+    return n;
+  return n + triangle(n - 1);
 }
 
 //linear, one layer, if-statement does not contribute
@@ -100,16 +102,16 @@ Input: '1/21/2018'
 Output: 1212018 OR ["1", "21", "2018"]
 */
 function split(str, sep) {
-    var idx = str.indexOf(sep);
-    if (idx == -1) 
-        return [str];
-		//you don't have to return an array, you can return a string as an array of 
-		//character 
-		//return str;
-    return [str.slice(0, idx)].concat(split(str.slice(idx + sep.length), sep))
-	//all these are valid syntax
-	//return (str.slice(0,idx) + (split(str.slice(idx + sep.length), sep)))
-	//return str.slice(0,idx).concat(split(str.slice(idx + sep.length), sep))
+  var idx = str.indexOf(sep);
+  if (idx === -1) 
+    return [str];
+  //you don't have to return an array, you can return a string as an array of 
+  //character 
+  //return str;
+  return [str.slice(0, idx)].concat(split(str.slice(idx + sep.length), sep));
+  //all these are valid syntax
+  //return (str.slice(0,idx) + (split(str.slice(idx + sep.length), sep)))
+  //return str.slice(0,idx).concat(split(str.slice(idx + sep.length), sep))
 }
 
 //linear, one layer
@@ -123,14 +125,14 @@ Input: 25
 Output: 11001
 */
 function convertToBinary(num){
-    if(num>0){
-        let binary = Math.floor(num%2); //save the reminder in binary
-		//divide the number by 2 and send that to the function again
-		//carry the reminder to the next recursion call
-        return (convertToBinary(Math.floor(num/2))+ binary);
-    }else{
-        return ''; //base case - at some point the divisions will lead to 0
-    }
+  if(num>0){
+    let binary = Math.floor(num%2); //save the reminder in binary
+    //divide the number by 2 and send that to the function again
+    //carry the reminder to the next recursion call
+    return (convertToBinary(Math.floor(num/2))+ binary);
+  }else{
+    return ''; //base case - at some point the divisions will lead to 0
+  }
 }
 
 //linear
@@ -195,21 +197,21 @@ Output:
 */
 
 function anagrams(prefix, str){
-    if(str.length <= 1){
-        console.log(`The anagram is ${prefix}${str}`);
-    } else {
-        for(let i=0; i<str.length; i++){
-            let currentLetter = str.substring(i, i+1); 
-            let previousLetters = str.substring(0,i);
-            let afterLetters = str.substring(i+1);
-            anagrams(prefix+currentLetter, previousLetters+afterLetters);
-        }
+  if(str.length <= 1){
+    console.log(`The anagram is ${prefix}${str}`);
+  } else {
+    for(let i=0; i<str.length; i++){
+      let currentLetter = str.substring(i, i+1); 
+      let previousLetters = str.substring(0,i);
+      let afterLetters = str.substring(i+1);
+      anagrams(prefix+currentLetter, previousLetters+afterLetters);
     }
+  }
 }
 function printAnagram(word){
-    //console.log(`The word for which we will find an anagram is ${word}`);
-    anagrams(' ', word);
-
+  //console.log(`The word for which we will find an anagram is ${word}`);
+  anagrams(' ', word);
+  
 }
 
 //o(2^n), the input (length of the string) increases the runtime dramatically with increasing size due to the exponential iincrease in combinations of anagrams
@@ -223,21 +225,21 @@ step through each line, analyze each step to understand how recursion works.
 */
 
 const animalHierarchy = [
-    {id: 'Animals', parent: null},
-    {id: 'Mammals', parent: 'Animals'},
-    {id: 'Dogs', parent:'Mammals' },
-    {id: 'Cats', parent:'Mammals' },
-    {id: 'Golden Retriever', parent: 'Dogs'},
-    {id: 'Husky', parent:'Dogs' },
-    {id: 'Bengal', parent:'Cats' }
-]
+  {id: 'Animals', parent: null},
+  {id: 'Mammals', parent: 'Animals'},
+  {id: 'Dogs', parent:'Mammals' },
+  {id: 'Cats', parent:'Mammals' },
+  {id: 'Golden Retriever', parent: 'Dogs'},
+  {id: 'Husky', parent:'Dogs' },
+  {id: 'Bengal', parent:'Cats' }
+];
 
 // ==============================
 function traverse(animalHierarchy, parent) {
-    let node = {};
-    animalHierarchy.filter(item => item.parent === parent)
-                   .forEach(item => node[item.id] = traverse(animalHierarchy, item.id));
-    return node;  
+  let node = {};
+  animalHierarchy.filter(item => item.parent === parent)
+    .forEach(item => node[item.id] = traverse(animalHierarchy, item.id));
+  return node;  
 }
 
 //o(2^n), the more layers of parenting that come with the input, the runtime will increase exponentially
@@ -250,131 +252,132 @@ Your output should be as shown below with proper indentation to show the hierarc
 */
 
 let organization = {
-	"Zuckerberg": {		
-		"Schroepfer": {
-			"Bosworth": {
-				"Steve":{},
-				"Kyle":{},
-				"Andra":{}
-			},
-			"Zhao": {
-				"Richie":{},
-				"Sofia":{},
-				"Jen":{}
-			},
-			"Badros": {
-				"John":{},
-				"Mike":{},
-				"Pat":{}
-			},
-			"Parikh": {
-				"Zach":{},
-				"Ryan":{},
-				"Tes":{}
-			}
-		},
-		"Schrage": {
-			"VanDyck": {
-				"Sabrina":{},
-				"Michelle":{},
-				"Josh":{}
-			},
-			"Swain": {
-				"Blanch":{},
-				"Tom":{},
-				"Joe":{}
-			},
-			"Frankovsky": {
-				"Jasee":{},
-				"Brian":{},
-				"Margaret":{}
-			}
-		},
-		"Sandberg": {
-			"Goler": {
-				"Eddie":{},
-				"Julie":{},
-				"Annie":{}
-			},
-			"Hernandez": {
-				"Rowi":{},
-				"Inga":{},
-				"Morgan":{}
-			},
-			"Moissinac": {
-				"Amy":{},
-				"Chuck":{},
-				"Vinni":{}
-			},
-			"Kelley": {
-				"Eric":{},
-				"Ana":{},
-				"Wes":{}
-			}
-}}};
-
+  'Zuckerberg': {		
+    'Schroepfer': {
+      'Bosworth': {
+        'Steve':{},
+        'Kyle':{},
+        'Andra':{}
+      },
+      'Zhao': {
+        'Richie':{},
+        'Sofia':{},
+        'Jen':{}
+      },
+      'Badros': {
+        'John':{},
+        'Mike':{},
+        'Pat':{}
+      },
+      'Parikh': {
+        'Zach':{},
+        'Ryan':{},
+        'Tes':{}
+      }
+    },
+    'Schrage': {
+      'VanDyck': {
+        'Sabrina':{},
+        'Michelle':{},
+        'Josh':{}
+      },
+      'Swain': {
+        'Blanch':{},
+        'Tom':{},
+        'Joe':{}
+      },
+      'Frankovsky': {
+        'Jasee':{},
+        'Brian':{},
+        'Margaret':{}
+      }
+    },
+    'Sandberg': {
+      'Goler': {
+        'Eddie':{},
+        'Julie':{},
+        'Annie':{}
+      },
+      'Hernandez': {
+        'Rowi':{},
+        'Inga':{},
+        'Morgan':{}
+      },
+      'Moissinac': {
+        'Amy':{},
+        'Chuck':{},
+        'Vinni':{}
+      },
+      'Kelley': {
+        'Eric':{},
+        'Ana':{},
+        'Wes':{}
+      }
+    }}};
+    
 function traverseA(data, depth = 0) {
-	let indent = " ".repeat(depth * 4);
-	Object.keys(data).forEach(key => {
-		console.log(indent + key);
-		traverseA(data[key], depth + 1)
-	});
+  let indent = ' '.repeat(depth * 4);
+  Object.keys(data).forEach(key => {
+    console.log(indent + key);
+    traverseA(data[key], depth + 1);
+  });
 }
-
+    
 function traverseB(node, indent=0) {
-	for (var key in node) {
-		console.log(" ".repeat(indent), key);
-		traverseB(node[key], indent + 4);
-	}
+  for (var key in node) {
+    console.log(' '.repeat(indent), key);
+    traverseB(node[key], indent + 4);
+  }
 }
-
+    
 //same as previous, depth of branches contribute to exponential increase in processing time
-
-
+    
+    
 function main(){
-	//console.log('#1 - count sheep');
-	//countSheep(5);
-
-	//console.log('#2 - Array Doubler');
-	//let arr = [10,5,3,4];
-	//console.log(double_all(arr));
-
-	//console.log('#3 - Reverse String');
-	//console.log(reverseString("tauhida"));
-
-	//console.log('#4 - nth Triangular Number');
-	//console.log(triangle(5));
-
-	//console.log('#5 - String Splitter');
-	//console.log(split('1/21/2018', '/'));
-
-	//console.log('#6 - Binary Representation');
-	//console.log(convertToBinary(25));
-
-	//console.log('#7 - Anagrams');
-	//printAnagram("east");
-
-	//console.log('#8 - animalHierarchy');
-	//console.log(traverse(animalHierarchy, null));
-
-	//console.log('#9 - Factorial');
-	//console.log(factorial(5)); //120
-	
-	/*
-	console.log('#10 - Fibonacci Sequence');
-	const fib = 7;
-	for(let i=1; i<=fib; i++){
-		console.log(fibonacci(i));
-	}
-	console.log('#10 - Fibonacci total');
-	console.log(fibonacci(fib));
-	*/
-	
-	//console.log('#11 - Organization Chart');
-	//console.log(traverseA(organization));
-	//console.log(traverseB(organization));
-
+  //console.log('#1 - count sheep');
+  //countSheep(5);
+      
+  //console.log('#2 - Array Doubler');
+  //let arr = [10,5,3,4];
+  //console.log(double_all(arr));
+      
+  //console.log('#3 - Reverse String');
+  //console.log(reverseString("tauhida"));
+      
+  //console.log('#4 - nth Triangular Number');
+  //console.log(triangle(5));
+      
+  //console.log('#5 - String Splitter');
+  //console.log(split('1/21/2018', '/'));
+      
+  //console.log('#6 - Binary Representation');
+  //console.log(convertToBinary(25));
+      
+  //console.log('#7 - Anagrams');
+  //printAnagram("east");
+      
+  //console.log('#8 - animalHierarchy');
+  //console.log(traverse(animalHierarchy, null));
+      
+  //console.log('#9 - Factorial');
+  //console.log(factorial(5)); //120
+      
+  /*
+      console.log('#10 - Fibonacci Sequence');
+      const fib = 7;
+      for(let i=1; i<=fib; i++){
+        console.log(fibonacci(i));
+      }
+      console.log('#10 - Fibonacci total');
+      console.log(fibonacci(fib));
+      */
+      
+  //console.log('#11 - Organization Chart');
+  //console.log(traverseA(organization));
+  //console.log(traverseB(organization));
+      
 }
-main()
-
+main();
+    
 //o(n^2), for loop inside of each recursion
+    
